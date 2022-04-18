@@ -26,6 +26,8 @@ import PasswordInput from '../../Components/Inputs/PasswordInput';
 import TitleLabel from '../../Components/Labels/TitleLabel';
 import DarkButton from '../../Components/Buttons/DarkButton';
 import LightButton from '../../Components/Buttons/LightButton';
+import Label from '../../Components/Labels/Label';
+import {capitalizeFirstLetter} from '../../Helpers/CapitalizeFirstLetter';
 
 const Login: FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -67,6 +69,7 @@ const Login: FC = () => {
         </View>
       </View>
       <TitleLabel text={'Iniciar Sesión'} textStyle={{marginVertical: hp(3)}} />
+
       <View
         style={{
           width: wp(90),
@@ -75,6 +78,12 @@ const Login: FC = () => {
           backgroundColor: 'white',
           borderRadius: 10,
         }}>
+        {loginStatus.status == 'failed' && (
+          <Label
+            text={capitalizeFirstLetter(loginStatus.errors)}
+            textStyle={{color: 'red', marginBottom: 10}}
+          />
+        )}
         <Controller
           control={control}
           rules={{
@@ -127,7 +136,7 @@ const Login: FC = () => {
         />
       </View>
       <LightButton
-        OnPress={handleSubmit(onSubmit)}
+        OnPress={() => {}}
         ButtonText={'Sign up'}
         ButtonStyle={{marginTop: 35}}
         ButtonTextStyle={{}}
@@ -162,29 +171,5 @@ const styles = StyleSheet.create({
     height: '60%',
     resizeMode: 'cover',
     alignSelf: 'center',
-  },
-  input: {
-    width: wp('80%'),
-    alignSelf: 'center',
-    marginVertical: hp('1%'),
-    fontSize: wp('4%'),
-    borderRadius: 20,
-    borderWidth: 0.5,
-    backgroundColor: '#f6f6f6',
-    paddingHorizontal: wp(5),
-  },
-  button: {
-    backgroundColor: '#ed7bc4',
-    width: wp('80%'),
-    height: hp('7%'),
-    justifyContent: 'center',
-    alignSelf: 'center',
-    borderRadius: 10,
-  },
-  text: {
-    color: 'white',
-    alignSelf: 'center',
-    fontSize: hp(2),
-    fontWeight: 'bold',
   },
 });

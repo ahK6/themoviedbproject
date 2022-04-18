@@ -24,12 +24,10 @@ export const loginUser = (email: string, password: string) => {
         password,
       })
       .then(response => {
-        console.log(response.data.token);
-        //dispatch(LoginAction(LOGIN_SUCCESS, response.data));
+        dispatch(LoginAction(LOGIN_SUCCESS, response.data.token));
       })
       .catch(error => {
-        return console.log(error.response.data.error);
-        dispatch(LoginAction(LOGIN_FAILURE, error.response.data.message));
+        dispatch(LoginAction(LOGIN_FAILURE, error.response.data.error));
       });
   };
 };

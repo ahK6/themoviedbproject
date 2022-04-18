@@ -11,6 +11,13 @@ const LabelsStyle = StyleSheet.create({
     fontSize: hp(3),
     fontWeight: 'bold',
   },
+
+  normalLabel: {
+    color: 'white',
+    alignSelf: 'center',
+    fontSize: hp(2),
+    fontWeight: 'bold',
+  },
 });
 
 export default LabelsStyle;
