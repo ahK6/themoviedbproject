@@ -19,6 +19,15 @@ const ButtonsStyles = StyleSheet.create({
     fontSize: hp(2),
     fontWeight: 'bold',
   },
+
+  LightButtonStyle: {
+    backgroundColor: '#ed7bc4',
+    width: wp('80%'),
+    height: hp('7%'),
+    justifyContent: 'center',
+    alignSelf: 'center',
+    borderRadius: 10,
+  },
 });
 
 export default ButtonsStyles;

@@ -8,7 +8,6 @@ const LabelsStyle = StyleSheet.create({
   titleLabel: {
     color: 'white',
     alignSelf: 'center',
-    marginVertical: hp(5),
     fontSize: hp(3),
     fontWeight: 'bold',
   },

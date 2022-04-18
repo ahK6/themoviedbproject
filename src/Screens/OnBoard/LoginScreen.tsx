@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -24,12 +25,17 @@ import Input from '../../Components/Inputs/Input';
 import PasswordInput from '../../Components/Inputs/PasswordInput';
 import TitleLabel from '../../Components/Labels/TitleLabel';
 import DarkButton from '../../Components/Buttons/DarkButton';
+import LightButton from '../../Components/Buttons/LightButton';
 
 const Login: FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
   const loginStatus = useAppSelector(store => store.Login);
+
+  useEffect(() => {
+    console.log(loginStatus);
+  }, [loginStatus]);
 
   const [hidePassword, setHidePassword] = useState<boolean>(false);
 
@@ -47,12 +53,11 @@ const Login: FC = () => {
   } = useForm<LoginScreenState>({resolver: yupResolver(schema)});
 
   const onSubmit = (data: LoginScreenState) => {
-    return console.log(data);
     dispatch(loginUser(data.email, data.password));
   };
 
   return (
-    <View style={styles.root}>
+    <ScrollView style={styles.root}>
       <View style={styles.sectionImageContainer}>
         <View style={styles.imageContainer}>
           <Image
@@ -61,7 +66,7 @@ const Login: FC = () => {
           />
         </View>
       </View>
-      <TitleLabel text={'Iniciar Sesión'} textStyle={{}} />
+      <TitleLabel text={'Iniciar Sesión'} textStyle={{marginVertical: hp(3)}} />
       <View
         style={{
           width: wp(90),
@@ -121,12 +126,13 @@ const Login: FC = () => {
           ButtonTextStyle={{}}
         />
       </View>
-      <View style={{marginTop: hp(5)}}>
-        <TouchableOpacity style={[styles.button]}>
-          <Text style={[styles.text]}>Sign up</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+      <LightButton
+        OnPress={handleSubmit(onSubmit)}
+        ButtonText={'Sign up'}
+        ButtonStyle={{marginTop: 35}}
+        ButtonTextStyle={{}}
+      />
+    </ScrollView>
   );
 };
 
