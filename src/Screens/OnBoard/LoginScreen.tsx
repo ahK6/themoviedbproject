@@ -22,6 +22,8 @@ import {RootState} from '../../store/store';
 import {loginUser} from '../../store/Actions/LoginAction';
 import Input from '../../Components/Inputs/Input';
 import PasswordInput from '../../Components/Inputs/PasswordInput';
+import TitleLabel from '../../Components/Labels/TitleLabel';
+import DarkButton from '../../Components/Buttons/DarkButton';
 
 const Login: FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -59,16 +61,7 @@ const Login: FC = () => {
           />
         </View>
       </View>
-      <Text
-        style={{
-          color: 'white',
-          alignSelf: 'center',
-          marginVertical: hp(5),
-          fontSize: hp(3),
-          fontWeight: 'bold',
-        }}>
-        Iniciar sesión
-      </Text>
+      <TitleLabel text={'Iniciar Sesión'} textStyle={{}} />
       <View
         style={{
           width: wp(90),
@@ -111,7 +104,7 @@ const Login: FC = () => {
                 setHidePassword(hidePassword ? false : true);
               }}
               label={'Password'}
-              rootContainer={{marginTop: hp(2)}}
+              rootContainer={{marginTop: 15}}
               containerStyle={{}}
               labelStyle={{}}
               textInputStyle={{}}
@@ -121,13 +114,12 @@ const Login: FC = () => {
           name="password"
         />
 
-        <View style={{marginTop: hp(5)}}>
-          <TouchableOpacity
-            onPress={handleSubmit(onSubmit)}
-            style={[styles.button, {backgroundColor: '#35324f'}]}>
-            <Text style={[styles.text]}>Login</Text>
-          </TouchableOpacity>
-        </View>
+        <DarkButton
+          OnPress={handleSubmit(onSubmit)}
+          ButtonText="Login"
+          ButtonStyle={{marginTop: 30}}
+          ButtonTextStyle={{}}
+        />
       </View>
       <View style={{marginTop: hp(5)}}>
         <TouchableOpacity style={[styles.button]}>
