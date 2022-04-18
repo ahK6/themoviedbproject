@@ -20,6 +20,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {LoginScreenState} from '../../store/Interfaces/LoginInterface';
 import {RootState} from '../../store/store';
 import {loginUser} from '../../store/Actions/LoginAction';
+import Input from '../../Components/Inputs/Input';
+import PasswordInput from '../../Components/Inputs/PasswordInput';
 
 const Login: FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -43,7 +45,7 @@ const Login: FC = () => {
   } = useForm<LoginScreenState>({resolver: yupResolver(schema)});
 
   const onSubmit = (data: LoginScreenState) => {
-    //return console.log(data);
+    return console.log(data);
     dispatch(loginUser(data.email, data.password));
   };
 
@@ -75,71 +77,49 @@ const Login: FC = () => {
           backgroundColor: 'white',
           borderRadius: 10,
         }}>
-        <View style={{width: wp('80%'), alignSelf: 'center'}}>
-          <Text style={{color: '#35324f', fontWeight: 'bold', fontSize: hp(2)}}>
-            Email
-          </Text>
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({field: {onChange, onBlur, value}}) => (
-              <TextInput style={styles.input} onChangeText={onChange} />
-            )}
-            name="email"
-          />
-          {errors.email?.message && (
-            <Text style={{color: '#ea7836', fontSize: hp(2)}}>
-              {errors.email?.message}
-            </Text>
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({field: {onChange, onBlur, value}}) => (
+            <Input
+              onChange={onChange}
+              validateError={errors.email?.message}
+              label={'Email'}
+              includeLabel={true}
+              labelStyle={{}}
+              textInputStyle={{}}
+              errorLabelStyle={{}}
+              containerStyle={{}}
+            />
           )}
-        </View>
+          name="email"
+        />
 
-        <View style={{width: wp('80%'), alignSelf: 'center', marginTop: hp(2)}}>
-          <Text style={{color: '#35324f', fontWeight: 'bold', fontSize: hp(2)}}>
-            Password
-          </Text>
-
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({field: {onChange, onBlur, value}}) => (
-              <View style={{justifyContent: 'center', marginTop: hp(3)}}>
-                <TextInput
-                  style={styles.input}
-                  onChangeText={onChange}
-                  secureTextEntry={hidePassword}
-                />
-                {hidePassword == true ? (
-                  <TouchableOpacity
-                    onPress={() => {
-                      setHidePassword(false);
-                    }}
-                    style={{position: 'absolute', right: wp(4)}}>
-                    <Icon name="eye-slash" size={30} color="#900" />
-                  </TouchableOpacity>
-                ) : (
-                  <TouchableOpacity
-                    onPress={() => {
-                      setHidePassword(true);
-                    }}
-                    style={{position: 'absolute', right: wp(4)}}>
-                    <Icon name="eye" size={30} color="#900" />
-                  </TouchableOpacity>
-                )}
-              </View>
-            )}
-            name="password"
-          />
-          {errors.password?.message && (
-            <Text style={{color: '#ea7836', fontSize: hp(2)}}>
-              {errors.password?.message}
-            </Text>
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({field: {onChange, onBlur, value}}) => (
+            <PasswordInput
+              onChange={onChange}
+              validateError={errors.password?.message}
+              hidePassword={hidePassword}
+              setHidePassword={() => {
+                setHidePassword(hidePassword ? false : true);
+              }}
+              label={'Password'}
+              rootContainer={{marginTop: hp(2)}}
+              containerStyle={{}}
+              labelStyle={{}}
+              textInputStyle={{}}
+              errorLabelStyle={{}}
+            />
           )}
-        </View>
+          name="password"
+        />
 
         <View style={{marginTop: hp(5)}}>
           <TouchableOpacity
