@@ -16,6 +16,7 @@ import {Dispatch} from 'redux';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {LoginScreenState} from '../../store/Interfaces/LoginInterface';
 import {RootState} from '../../store/store';
 import {loginUser} from '../../store/Actions/LoginAction';
@@ -25,6 +26,8 @@ const Login: FC = () => {
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
   const loginStatus = useAppSelector(store => store.Login);
+
+  const [hidePassword, setHidePassword] = useState<boolean>(false);
 
   const schema = yup.object().shape({
     email: yup
@@ -97,13 +100,37 @@ const Login: FC = () => {
           <Text style={{color: '#35324f', fontWeight: 'bold', fontSize: hp(2)}}>
             Password
           </Text>
+
           <Controller
             control={control}
             rules={{
               required: true,
             }}
             render={({field: {onChange, onBlur, value}}) => (
-              <TextInput style={styles.input} onChangeText={onChange} />
+              <View style={{justifyContent: 'center', marginTop: hp(3)}}>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={onChange}
+                  secureTextEntry={hidePassword}
+                />
+                {hidePassword == true ? (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setHidePassword(false);
+                    }}
+                    style={{position: 'absolute', right: wp(4)}}>
+                    <Icon name="eye-slash" size={30} color="#900" />
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setHidePassword(true);
+                    }}
+                    style={{position: 'absolute', right: wp(4)}}>
+                    <Icon name="eye" size={30} color="#900" />
+                  </TouchableOpacity>
+                )}
+              </View>
             )}
             name="password"
           />
