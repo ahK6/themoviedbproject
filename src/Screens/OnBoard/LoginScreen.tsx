@@ -13,6 +13,9 @@ import {
 } from 'react-native-responsive-screen';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {Dispatch} from 'redux';
+import {useForm, Controller} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import {LoginScreenState} from '../../store/Interfaces/LoginInterface';
 import {RootState} from '../../store/store';
 
@@ -21,6 +24,19 @@ const Login: FC = () => {
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
   const loginStatus = useAppSelector(store => store.Login);
+
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .email('Please enter a valid email')
+      .required('Email is required'),
+    password: yup.string().required('Password is required.'),
+  });
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm<FormData>({resolver: yupResolver(schema)});
 
   const [loginData, setLoginData] = useState<LoginScreenState>({
     email: '',
