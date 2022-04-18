@@ -18,6 +18,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import {LoginScreenState} from '../../store/Interfaces/LoginInterface';
 import {RootState} from '../../store/store';
+import {loginUser} from '../../store/Actions/LoginAction';
 
 const Login: FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -36,12 +37,12 @@ const Login: FC = () => {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm<FormData>({resolver: yupResolver(schema)});
+  } = useForm<LoginScreenState>({resolver: yupResolver(schema)});
 
-  const [loginData, setLoginData] = useState<LoginScreenState>({
-    email: '',
-    password: '',
-  });
+  const onSubmit = (data: LoginScreenState) => {
+    //return console.log(data);
+    dispatch(loginUser(data.email, data.password));
+  };
 
   return (
     <View style={styles.root}>
@@ -75,18 +76,47 @@ const Login: FC = () => {
           <Text style={{color: '#35324f', fontWeight: 'bold', fontSize: hp(2)}}>
             Email
           </Text>
-          <TextInput style={styles.input} />
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <TextInput style={styles.input} onChangeText={onChange} />
+            )}
+            name="email"
+          />
+          {errors.email?.message && (
+            <Text style={{color: '#ea7836', fontSize: hp(2)}}>
+              {errors.email?.message}
+            </Text>
+          )}
         </View>
 
         <View style={{width: wp('80%'), alignSelf: 'center', marginTop: hp(2)}}>
           <Text style={{color: '#35324f', fontWeight: 'bold', fontSize: hp(2)}}>
             Password
           </Text>
-          <TextInput style={styles.input} />
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <TextInput style={styles.input} onChangeText={onChange} />
+            )}
+            name="password"
+          />
+          {errors.password?.message && (
+            <Text style={{color: '#ea7836', fontSize: hp(2)}}>
+              {errors.password?.message}
+            </Text>
+          )}
         </View>
 
         <View style={{marginTop: hp(5)}}>
           <TouchableOpacity
+            onPress={handleSubmit(onSubmit)}
             style={[styles.button, {backgroundColor: '#35324f'}]}>
             <Text style={[styles.text]}>Login</Text>
           </TouchableOpacity>
