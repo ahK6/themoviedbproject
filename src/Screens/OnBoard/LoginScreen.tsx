@@ -36,7 +36,7 @@ const Login: FC = () => {
   const loginStatus = useAppSelector(store => store.Login);
 
   useEffect(() => {
-    console.log(loginStatus);
+    console.log(loginStatus.token);
   }, [loginStatus]);
 
   const [hidePassword, setHidePassword] = useState<boolean>(false);
