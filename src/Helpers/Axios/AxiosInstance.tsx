@@ -2,8 +2,8 @@ import axios from 'axios';
 import {store} from '../../store/store';
 
 function axiosListener() {
-  let accessToken = store.getState().Login.token;
-  console.log('wefwef ' + accessToken);
+  let accessToken =
+    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYWE2NjMwMGU4NGZhZGJhMmUxYmNlMzhlYTBhM2I5YiIsInN1YiI6IjYyNWUyZmY0MTk2OTBjMDA1MWNjOTY3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BsprNV2vyx0SB6KhREjHsZUwUN05UuiU8ZPTu7fedMY';
   if (accessToken != undefined && accessToken != '') {
     axiosInstance.defaults.headers.common[
       'Authorization'
@@ -11,6 +11,7 @@ function axiosListener() {
   } else {
     delete axiosInstance.defaults.headers.common['Authorization'];
   }
+  console.log(accessToken);
 }
 
 /**

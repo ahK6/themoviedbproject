@@ -5,6 +5,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../store/store';
 import Login from '../Screens/OnBoard/LoginScreen';
 import Home from '../Screens/Main/Home';
+import {Alert, Text, TouchableOpacity, View} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,7 +34,6 @@ const RootNavigation = () => {
             component={Home}
             options={{
               headerTitleAlign: 'center',
-              headerShown: false,
             }}
           />
         )}
