@@ -17,7 +17,7 @@ import {Dispatch} from 'redux';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import LottieView from 'lottie-react-native';
 import {LoginScreenState} from '../../store/Interfaces/LoginInterface';
 import {RootState} from '../../store/store';
 import {loginUser} from '../../store/Actions/LoginAction';
@@ -131,6 +131,7 @@ const Login: FC = () => {
         <DarkButton
           OnPress={handleSubmit(onSubmit)}
           ButtonText="Login"
+          isLoading={loginStatus.status == 'loading' ? true : false}
           ButtonStyle={{marginTop: 30}}
           ButtonTextStyle={{}}
         />
@@ -140,6 +141,7 @@ const Login: FC = () => {
         ButtonText={'Sign up'}
         ButtonStyle={{marginTop: 35}}
         ButtonTextStyle={{}}
+        isLoading={false}
       />
     </ScrollView>
   );

@@ -23,9 +23,8 @@ const LoginReducer = (
       return {
         ...state,
         status: 'success',
-        data: action.payload,
-        tokenType: action.payload.token_type,
-        token: action.payload.access_token,
+        token: action.payload,
+        errors: '',
       };
     case LOGIN_FAILURE:
       return {

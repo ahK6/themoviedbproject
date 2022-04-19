@@ -5,8 +5,8 @@ import {
   LOGIN_ATTEMPT,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  LoginActionsTypes,
   LOGOUT,
+  LoginActionsTypes,
 } from '../Types/LoginTypes';
 import {useState} from 'react';
 
