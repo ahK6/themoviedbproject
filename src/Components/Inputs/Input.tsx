@@ -8,14 +8,14 @@ import {InputPropsParams} from './InputTypes';
 import InputStyle from './InputStyles';
 
 const Input: FC<InputPropsParams> = ({
-  onChange,
+  onChange = () => {},
   validateError,
-  label,
-  containerStyle,
-  labelStyle,
-  textInputStyle,
-  errorLabelStyle,
-  includeLabel,
+  label = '',
+  containerStyle = {},
+  labelStyle = {},
+  textInputStyle = {},
+  errorLabelStyle = {},
+  includeLabel = false,
 }) => {
   return (
     <View style={[InputStyle.container, containerStyle]}>

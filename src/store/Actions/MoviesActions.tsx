@@ -31,11 +31,9 @@ export const GetPopularMovies = (page: number = 1) => {
     axiosMoviesInstance
       .get(`/movie/popular?&page=${page}`)
       .then(response => {
-        console.log('pageee ' + response.data.total_pages);
         dispatch(MoviesAction(GET_POPULAR_MOVIES_SUCCESS, response.data));
       })
       .catch(error => {
-        console.log('errrorrr' + error);
         dispatch(
           MoviesAction(
             GET_POPULAR_MOVIES_FAILURE,
@@ -56,7 +54,6 @@ export const GetMovieDetail = (movieId: number = 0) => {
         dispatch(MoviesAction(GET_RELATED_MOVIES_SUCCESS, response.data));
       })
       .catch(error => {
-        console.log('errrorrr' + error);
         dispatch(
           MoviesAction(
             GET_RELATED_MOVIES_FAILURE,
@@ -74,11 +71,9 @@ export const SearchMovie = (query: String = '') => {
     axiosMoviesInstance
       .get(`/search/movie?query=${query}`)
       .then(response => {
-        console.log('response ' + JSON.stringify(response.data));
         dispatch(MoviesAction(SEARCH_MOVIE_SUCCESS, response.data));
       })
       .catch(error => {
-        console.log('errrorrr' + JSON.stringify(error.response.data.errors[0]));
         dispatch(
           MoviesAction(SEARCH_MOVIE_FAILURE, error.response.data.errors[0]),
         );

@@ -9,16 +9,16 @@ import {InputPasswordPropsParams} from './InputTypes';
 import InputStyle from './InputStyles';
 
 const PasswordInput: FC<InputPasswordPropsParams> = ({
-  onChange,
+  onChange = () => {},
   validateError,
-  hidePassword,
-  setHidePassword,
-  label,
-  rootContainer,
-  containerStyle,
-  labelStyle,
-  textInputStyle,
-  errorLabelStyle,
+  hidePassword = false,
+  setHidePassword = () => {},
+  label = '',
+  rootContainer = {},
+  containerStyle = {},
+  labelStyle = {},
+  textInputStyle = {},
+  errorLabelStyle = {},
 }) => {
   return (
     <View style={[InputStyle.passwordContainer, rootContainer]}>

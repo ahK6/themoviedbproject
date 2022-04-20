@@ -8,10 +8,10 @@ import {ButtonTypes} from './ButtonsTypes';
 import ButtonsStyles from './ButtonsStyles';
 
 const LightButton: FC<ButtonTypes> = ({
-  OnPress,
-  ButtonText,
-  ButtonStyle,
-  ButtonTextStyle,
+  OnPress = () => {},
+  ButtonText = '',
+  ButtonStyle = {},
+  ButtonTextStyle = {},
 }) => {
   return (
     <TouchableOpacity

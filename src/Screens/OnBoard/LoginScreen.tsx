@@ -35,10 +35,6 @@ const Login: FC = () => {
 
   const loginStatus = useAppSelector(store => store.Login);
 
-  useEffect(() => {
-    console.log(loginStatus.token);
-  }, [loginStatus]);
-
   const [hidePassword, setHidePassword] = useState<boolean>(false);
 
   const schema = yup.object().shape({

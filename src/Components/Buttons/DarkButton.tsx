@@ -9,11 +9,11 @@ import ButtonsStyles from './ButtonsStyles';
 import AnimatedLottieView from 'lottie-react-native';
 
 const DarkButton: FC<ButtonTypes> = ({
-  OnPress,
-  isLoading,
-  ButtonText,
-  ButtonStyle,
-  ButtonTextStyle,
+  OnPress = () => {},
+  isLoading = false,
+  ButtonText = '',
+  ButtonStyle = {},
+  ButtonTextStyle = {},
 }) => {
   return (
     <TouchableOpacity

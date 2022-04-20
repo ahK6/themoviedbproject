@@ -7,7 +7,7 @@ import {
 import {LabelPropsParams} from './LabelsTypes';
 import LabelsStyle from './LabelsStyles';
 
-const TitleLabel: FC<LabelPropsParams> = ({text, textStyle}) => {
+const TitleLabel: FC<LabelPropsParams> = ({text = '', textStyle}) => {
   return <Text style={[LabelsStyle.titleLabel, textStyle]}>{text}</Text>;
 };
 

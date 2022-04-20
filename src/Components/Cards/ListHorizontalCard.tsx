@@ -12,7 +12,6 @@ import {ListCardPropsParams} from './ListCardType';
 
 const ListHorizontalCard: FC<ListCardPropsParams> = ({
   posterImage = '',
-
   voteAverage = '',
   onPress = () => {},
 }) => {

@@ -24,9 +24,7 @@ const Home = () => {
   const [currentePage, setCurrentPage] = useState<number>(1);
   const popularMoviesData = useAppSelector(state => state.Movies);
 
-  useEffect(() => {
-    console.log('xdddddd ' + popularMoviesData.status);
-  }, [popularMoviesData]);
+  useEffect(() => {}, [popularMoviesData]);
 
   useEffect(() => {
     dispatch(GetPopularMovies(1));

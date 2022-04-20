@@ -3,8 +3,7 @@ import React, {FC} from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {OverlayPropsParams} from './OverlayTypes';
 
-const LoadingOverlay: FC<OverlayPropsParams> = ({showOverlay}) => {
-  console.log('spineeeeeeeer' + showOverlay);
+const LoadingOverlay: FC<OverlayPropsParams> = ({showOverlay = false}) => {
   return (
     <Spinner
       visible={showOverlay}

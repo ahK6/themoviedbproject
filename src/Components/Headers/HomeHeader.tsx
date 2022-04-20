@@ -25,12 +25,7 @@ const HomeHeader = () => {
     setSearchText(text);
   };
 
-  useEffect(() => {
-    console.log(searchText);
-  }, [searchText]);
-
   const onPressButton = () => {
-    console.log('aaaaa' + searchText);
     if (searchText === '') {
       return Alert.alert('Please enter a text in search field');
     }
