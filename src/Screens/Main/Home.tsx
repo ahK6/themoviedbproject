@@ -9,7 +9,7 @@ import {
 
 import Label from '../../Components/Labels/Label';
 import TitleLabel from '../../Components/Labels/TitleLabel';
-import {GetPopularMovies} from '../../store/Actions/MoviesActions';
+import {ClearState, GetPopularMovies} from '../../store/Actions/MoviesActions';
 import {RootState} from '../../store/store';
 import ListCard from '../../Components/Cards/ListCard';
 import LoadingOverlay from '../../Components/Modals/LoadingOverlay';
@@ -25,7 +25,15 @@ const Home = () => {
   const popularMoviesData = useAppSelector(state => state.Movies);
 
   useEffect(() => {
+    console.log('xdddddd ' + popularMoviesData.status);
+  }, [popularMoviesData]);
+
+  useEffect(() => {
     dispatch(GetPopularMovies(1));
+
+    return () => {
+      dispatch(ClearState());
+    };
   }, []);
 
   useEffect(() => {

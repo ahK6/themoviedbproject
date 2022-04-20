@@ -46,6 +46,29 @@ const LisCardStyle = StyleSheet.create({
   },
 
   overviewLabel: {color: 'black', textAlign: 'center'},
+
+  HorizontalCardTopContainer: {
+    marginHorizontal: wp(2),
+    backgroundColor: 'white',
+    width: wp(40),
+    height: hp(30),
+    flex: 1,
+  },
+  HorizontalPosterImage: {
+    width: wp(40),
+    height: hp(30),
+  },
+  HorizontalRateContainer: {
+    position: 'absolute',
+    left: wp(0),
+    bottom: hp(0),
+    paddingLeft: wp(3),
+    paddingVertical: hp(0.5),
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    width: wp(40),
+  },
 });
 
 export default LisCardStyle;

@@ -53,3 +53,9 @@ export const GetMovieDetail = (movieId: number = 0) => {
       });
   };
 };
+
+export const ClearState = () => {
+  return (dispatch: Dispatch<any>) => {
+    dispatch(MoviesAction(GET_POPULAR_MOVIES_ATTEMPT, ''));
+  };
+};
