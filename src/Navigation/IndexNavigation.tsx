@@ -8,6 +8,9 @@ import Home from '../Screens/Main/Home';
 import {Alert, Text, TouchableOpacity, View} from 'react-native';
 import {RootStackParamList} from './NavigationsPropsParamsTypes';
 import MovieDetail from '../Screens/Main/MovieDetail';
+import Input from '../Components/Inputs/Input';
+import {heightPercentageToDP} from 'react-native-responsive-screen';
+import HomeHeader from '../Components/Headers/HomeHeader';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -33,6 +36,7 @@ const RootNavigation = () => {
               component={Home}
               options={{
                 headerTitleAlign: 'center',
+                header: () => <HomeHeader />,
               }}
             />
             <Stack.Screen

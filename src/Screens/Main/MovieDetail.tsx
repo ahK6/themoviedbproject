@@ -14,18 +14,7 @@ import {GetMovieDetail} from '../../store/Actions/MoviesActions';
 import {RootState} from '../../store/store';
 import TitleLabel from '../../Components/Labels/TitleLabel';
 
-interface MovieDetail {
-  item: {
-    backdrop_path: string;
-    poster_path: string;
-    title: string;
-    release_date: string;
-    overview: string;
-    vote_average: string;
-  };
-}
-
-const MovieDetail: FC<MovieDetail> = (props: any) => {
+const MovieDetail: FC = (props: any) => {
   const isVisible = useIsFocused();
 
   const MovieData = props.route.params.item;
@@ -49,11 +38,11 @@ const MovieDetail: FC<MovieDetail> = (props: any) => {
       }}>
       <ListCard
         onPress={() => navigation.navigate('Home')}
-        bannerImage={MovieData?.backdrop_path}
-        posterImage={MovieData?.poster_path}
-        movieTitle={MovieData?.title}
-        releaseDate={MovieData?.release_date}
-        overview={MovieData?.overview}
+        bannerImage={MovieData.backdrop_path}
+        posterImage={MovieData.poster_path}
+        movieTitle={MovieData.title}
+        releaseDate={MovieData.release_date}
+        overview={MovieData.overview}
         voteAverage={MovieData?.vote_average}
       />
       <TitleLabel

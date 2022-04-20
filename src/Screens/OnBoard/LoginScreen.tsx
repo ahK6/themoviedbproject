@@ -102,10 +102,6 @@ const Login: FC = () => {
               validateError={errors.email?.message}
               label={'Email'}
               includeLabel={true}
-              labelStyle={{}}
-              textInputStyle={{}}
-              errorLabelStyle={{}}
-              containerStyle={{}}
             />
           )}
           name="email"
@@ -126,10 +122,6 @@ const Login: FC = () => {
               }}
               label={'Password'}
               rootContainer={{marginTop: 15}}
-              containerStyle={{}}
-              labelStyle={{}}
-              textInputStyle={{}}
-              errorLabelStyle={{}}
             />
           )}
           name="password"
@@ -147,7 +139,6 @@ const Login: FC = () => {
         OnPress={() => {}}
         ButtonText={'Sign up'}
         ButtonStyle={{marginTop: 35}}
-        ButtonTextStyle={{}}
         isLoading={false}
       />
     </ScrollView>
