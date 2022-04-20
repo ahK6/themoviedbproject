@@ -7,10 +7,14 @@ import {
   GET_RELATED_MOVIES_ATTEMPT,
   GET_RELATED_MOVIES_SUCCESS,
   GET_RELATED_MOVIES_FAILURE,
+  SEARCH_MOVIE_ATTEMPT,
+  SEARCH_MOVIE_SUCCESS,
+  SEARCH_MOVIE_FAILURE,
 } from '../Types/MoviesTypes';
 const initialState = {
   data: [],
   movieData: [],
+  dataSearch: [],
   page: 0,
   lastPage: 0,
   status: '',
@@ -58,6 +62,26 @@ const MoviesReducer = (
         errors: '',
       };
     case GET_RELATED_MOVIES_FAILURE:
+      return {
+        ...state,
+        status: 'failed',
+        errors: action.payload,
+      };
+
+    case SEARCH_MOVIE_ATTEMPT:
+      return {
+        ...state,
+        status: action.payload,
+        errors: '',
+      };
+    case SEARCH_MOVIE_SUCCESS:
+      return {
+        ...state,
+        status: 'success',
+        dataSearch: action.payload.results,
+        errors: '',
+      };
+    case SEARCH_MOVIE_FAILURE:
       return {
         ...state,
         status: 'failed',

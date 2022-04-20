@@ -15,7 +15,6 @@ function axiosListener() {
   } else {
     delete axiosInstance.defaults.headers.common['Authorization'];
   }
-  console.log(accessToken);
 }
 
 /**

@@ -11,6 +11,9 @@ import {
   GET_RELATED_MOVIES_ATTEMPT,
   GET_RELATED_MOVIES_SUCCESS,
   GET_RELATED_MOVIES_FAILURE,
+  SEARCH_MOVIE_ATTEMPT,
+  SEARCH_MOVIE_SUCCESS,
+  SEARCH_MOVIE_FAILURE,
 } from '../Types/MoviesTypes';
 
 const MoviesAction: ActionCreator<MoviesActionsTypes> = (type, payload) => {
@@ -33,7 +36,12 @@ export const GetPopularMovies = (page: number = 1) => {
       })
       .catch(error => {
         console.log('errrorrr' + error);
-        dispatch(MoviesAction(GET_POPULAR_MOVIES_FAILURE, error.response));
+        dispatch(
+          MoviesAction(
+            GET_POPULAR_MOVIES_FAILURE,
+            error.response.data.errors[0],
+          ),
+        );
       });
   };
 };
@@ -49,13 +57,31 @@ export const GetMovieDetail = (movieId: number = 0) => {
       })
       .catch(error => {
         console.log('errrorrr' + error);
-        dispatch(MoviesAction(GET_RELATED_MOVIES_FAILURE, error.response));
+        dispatch(
+          MoviesAction(
+            GET_RELATED_MOVIES_FAILURE,
+            error.response.data.errors[0],
+          ),
+        );
       });
   };
 };
 
-export const ClearState = () => {
+export const SearchMovie = (query: String = '') => {
   return (dispatch: Dispatch<any>) => {
-    dispatch(MoviesAction(GET_POPULAR_MOVIES_ATTEMPT, ''));
+    dispatch(MoviesAction(SEARCH_MOVIE_ATTEMPT, 'updating'));
+
+    axiosMoviesInstance
+      .get(`/search/movie?query=${query}`)
+      .then(response => {
+        console.log('response ' + JSON.stringify(response.data));
+        dispatch(MoviesAction(SEARCH_MOVIE_SUCCESS, response.data));
+      })
+      .catch(error => {
+        console.log('errrorrr' + JSON.stringify(error.response.data.errors[0]));
+        dispatch(
+          MoviesAction(SEARCH_MOVIE_FAILURE, error.response.data.errors[0]),
+        );
+      });
   };
 };

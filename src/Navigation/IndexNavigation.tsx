@@ -11,6 +11,7 @@ import MovieDetail from '../Screens/Main/MovieDetail';
 import Input from '../Components/Inputs/Input';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
 import HomeHeader from '../Components/Headers/HomeHeader';
+import SearchResult from '../Screens/Main/SearchResults';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -42,6 +43,13 @@ const RootNavigation = () => {
             <Stack.Screen
               name="MovieDetail"
               component={MovieDetail}
+              options={{
+                headerTitleAlign: 'center',
+              }}
+            />
+            <Stack.Screen
+              name="SearchMovie"
+              component={SearchResult}
               options={{
                 headerTitleAlign: 'center',
               }}
