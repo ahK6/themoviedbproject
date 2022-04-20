@@ -9,7 +9,8 @@ import {
   GET_RELATED_MOVIES_FAILURE,
 } from '../Types/MoviesTypes';
 const initialState = {
-  data: '',
+  data: [],
+  movieData: [],
   page: 0,
   lastPage: 0,
   status: '',

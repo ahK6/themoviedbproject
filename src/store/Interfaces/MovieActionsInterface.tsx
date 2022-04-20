@@ -1,5 +1,6 @@
 export interface MovieInterface {
-  data: string;
+  data: {}[];
+  movieData: {}[];
   page: number;
   lastPage: number;
   errors: string;
