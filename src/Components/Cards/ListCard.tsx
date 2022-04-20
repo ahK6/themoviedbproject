@@ -24,16 +24,24 @@ const ListCard: FC<ListCardPropsParams> = ({
       <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
         <Image
           style={ListCardStyle.bannerImage}
-          source={{
-            uri: 'https://image.tmdb.org/t/p/w500/' + bannerImage,
-          }}
+          source={
+            bannerImage
+              ? {
+                  uri: 'https://image.tmdb.org/t/p/w500/' + bannerImage,
+                }
+              : require('../../assets/images/no-image.png')
+          }
         />
         <View style={ListCardStyle.bannerImageContainer}>
           <Image
             style={ListCardStyle.posterImage}
-            source={{
-              uri: 'https://image.tmdb.org/t/p/w500/' + posterImage,
-            }}
+            source={
+              posterImage
+                ? {
+                    uri: 'https://image.tmdb.org/t/p/w500/' + posterImage,
+                  }
+                : require('../../assets/images/no-photo-avaible.jpg')
+            }
           />
         </View>
         <View style={ListCardStyle.posterImageContainer}>
@@ -43,8 +51,14 @@ const ListCard: FC<ListCardPropsParams> = ({
 
         <View style={ListCardStyle.labelsContainer}>
           <TitleLabel text={movieTitle} textStyle={ListCardStyle.titleLabel} />
-          <Label text={releaseDate} textStyle={ListCardStyle.releaseLabel} />
-          <Label text={overview} textStyle={ListCardStyle.overviewLabel} />
+          <Label
+            text={releaseDate ? releaseDate : 'No release date avaible'}
+            textStyle={ListCardStyle.releaseLabel}
+          />
+          <Label
+            text={overview ? overview : 'No overview information avaible'}
+            textStyle={ListCardStyle.overviewLabel}
+          />
         </View>
       </TouchableOpacity>
     </View>

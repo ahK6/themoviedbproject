@@ -26,10 +26,6 @@ const MovieDetail: FC = (props: any) => {
   const MovieDetalData = useAppSelector(state => state.RelatedMovies);
 
   useEffect(() => {
-    console.log(MovieDetalData);
-  }, [MovieDetalData]);
-
-  useEffect(() => {
     dispatch(GetMovieDetail(MovieData.id));
   }, [MovieData]);
 

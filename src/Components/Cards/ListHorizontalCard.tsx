@@ -20,9 +20,13 @@ const ListHorizontalCard: FC<ListCardPropsParams> = ({
       <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
         <Image
           style={ListCardStyle.HorizontalPosterImage}
-          source={{
-            uri: 'https://image.tmdb.org/t/p/w500/' + posterImage,
-          }}
+          source={
+            posterImage
+              ? {
+                  uri: 'https://image.tmdb.org/t/p/w500/' + posterImage,
+                }
+              : require('../../assets/images/no-photo-avaible.jpg')
+          }
         />
         <View style={ListCardStyle.HorizontalRateContainer}>
           <Icon name="star" size={hp(3)} color="yellow" />
