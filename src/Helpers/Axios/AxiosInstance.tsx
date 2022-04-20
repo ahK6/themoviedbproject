@@ -5,12 +5,17 @@ function axiosListener() {
   let accessToken =
     'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYWE2NjMwMGU4NGZhZGJhMmUxYmNlMzhlYTBhM2I5YiIsInN1YiI6IjYyNWUyZmY0MTk2OTBjMDA1MWNjOTY3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BsprNV2vyx0SB6KhREjHsZUwUN05UuiU8ZPTu7fedMY';
   if (accessToken != undefined && accessToken != '') {
+    axiosInstance.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer ${accessToken}`;
+
     axiosMoviesInstance.defaults.headers.common[
       'Authorization'
     ] = `Bearer ${accessToken}`;
   } else {
     delete axiosInstance.defaults.headers.common['Authorization'];
   }
+  console.log(accessToken);
 }
 
 /**

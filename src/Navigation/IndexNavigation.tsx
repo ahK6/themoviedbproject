@@ -12,10 +12,6 @@ const Stack = createNativeStackNavigator();
 const RootNavigation = () => {
   const loginStatus = useSelector((store: RootState) => store?.Login);
 
-  useEffect(() => {
-    console.log('wefkwkfj ' + JSON.stringify(loginStatus));
-  }, [loginStatus]);
-
   return (
     <NavigationContainer>
       <Stack.Navigator>

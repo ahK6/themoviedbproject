@@ -8,7 +8,7 @@ import {
 const initialState = {
   data: '',
   page: 0,
-  last_page: 0,
+  lastPage: 0,
   status: '',
   errors: '',
 };
@@ -28,7 +28,7 @@ const MoviesReducer = (
       return {
         ...state,
         status: 'success',
-        data: action.payload.results,
+        data: [...state.data, ...action.payload.results],
         page: action.payload.page,
         lastPage: action.payload.total_pages,
         errors: '',

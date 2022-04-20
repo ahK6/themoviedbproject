@@ -1,7 +1,7 @@
 export interface MovieInterface {
   data: string;
   page: number;
-  last_page: number;
+  lastPage: number;
   errors: string;
   status: string;
 }
