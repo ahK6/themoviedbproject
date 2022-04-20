@@ -34,10 +34,13 @@ export const GetPopularMovies = (page: number = 1) => {
         dispatch(MoviesAction(GET_POPULAR_MOVIES_SUCCESS, response.data));
       })
       .catch(error => {
+        console.log(error.response.data);
         dispatch(
           MoviesAction(
             GET_POPULAR_MOVIES_FAILURE,
-            error.response.data.errors[0],
+            error.response.data.errors
+              ? error.response.data.errors[0]
+              : error.response.data.status_message,
           ),
         );
       });
@@ -57,7 +60,9 @@ export const GetMovieDetail = (movieId: number = 0) => {
         dispatch(
           MoviesAction(
             GET_RELATED_MOVIES_FAILURE,
-            error.response.data.errors[0],
+            error.response.data.errors
+              ? error.response.data.errors[0]
+              : error.response.data.status_message,
           ),
         );
       });
@@ -75,7 +80,12 @@ export const SearchMovie = (query: String = '') => {
       })
       .catch(error => {
         dispatch(
-          MoviesAction(SEARCH_MOVIE_FAILURE, error.response.data.errors[0]),
+          MoviesAction(
+            SEARCH_MOVIE_FAILURE,
+            error.response.data.errors
+              ? error.response.data.errors[0]
+              : error.response.data.status_message,
+          ),
         );
       });
   };

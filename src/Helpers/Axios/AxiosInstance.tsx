@@ -2,16 +2,17 @@ import axios from 'axios';
 import {store} from '../../store/store';
 
 function axiosListener() {
-  let accessToken =
+  const LOGIN_TOKEN = store.getState().Login;
+  let moviedbToken =
     'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYWE2NjMwMGU4NGZhZGJhMmUxYmNlMzhlYTBhM2I5YiIsInN1YiI6IjYyNWUyZmY0MTk2OTBjMDA1MWNjOTY3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BsprNV2vyx0SB6KhREjHsZUwUN05UuiU8ZPTu7fedMY';
-  if (accessToken != undefined && accessToken != '') {
+  if (LOGIN_TOKEN.token != undefined && LOGIN_TOKEN.token != '') {
     axiosInstance.defaults.headers.common[
       'Authorization'
-    ] = `Bearer ${accessToken}`;
+    ] = `Bearer ${moviedbToken}`;
 
     axiosMoviesInstance.defaults.headers.common[
       'Authorization'
-    ] = `Bearer ${accessToken}`;
+    ] = `Bearer ${moviedbToken}`;
   } else {
     delete axiosInstance.defaults.headers.common['Authorization'];
   }

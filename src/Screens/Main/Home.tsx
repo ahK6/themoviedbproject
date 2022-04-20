@@ -9,7 +9,7 @@ import {
 
 import Label from '../../Components/Labels/Label';
 import TitleLabel from '../../Components/Labels/TitleLabel';
-import {ClearState, GetPopularMovies} from '../../store/Actions/MoviesActions';
+import {GetPopularMovies} from '../../store/Actions/MoviesActions';
 import {RootState} from '../../store/store';
 import ListCard from '../../Components/Cards/ListCard';
 import LoadingOverlay from '../../Components/Modals/LoadingOverlay';
@@ -28,10 +28,6 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(GetPopularMovies(1));
-
-    return () => {
-      dispatch(ClearState());
-    };
   }, []);
 
   useEffect(() => {
@@ -53,7 +49,7 @@ const Home = () => {
       {popularMoviesData.status === 'failed' ? (
         <>
           <TitleLabel
-            text={'Some thing went wrong, please try again later'}
+            text={popularMoviesData.errors}
             textStyle={{
               textAlign: 'center',
               marginVertical: hp(5),
