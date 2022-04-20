@@ -13,19 +13,23 @@ import {GetPopularMovies} from '../../store/Actions/MoviesActions';
 import {RootState} from '../../store/store';
 import ListCard from '../../Components/Cards/ListCard';
 import LoadingOverlay from '../../Components/Modals/LoadingOverlay';
+import {useNavigation} from '@react-navigation/native';
+import {MovieDetailScreenProp} from '../../Navigation/NavigationsPropsParamsTypes';
 
 const Home = () => {
+  const navigation = useNavigation<MovieDetailScreenProp>();
   const dispatch: Dispatch<any> = useDispatch();
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
   const [currentePage, setCurrentPage] = useState<number>(1);
   const popularMoviesData = useAppSelector(state => state.Movies);
-  const popularMoviesStatus = useAppSelector(state => state.Movies.status);
 
   useEffect(() => {
-    if (currentePage === 1) {
-      dispatch(GetPopularMovies(1));
-    } else if (currentePage !== 1) {
+    dispatch(GetPopularMovies(1));
+  }, []);
+
+  useEffect(() => {
+    if (currentePage !== 1) {
       dispatch(GetPopularMovies(currentePage));
     }
   }, [currentePage]);
@@ -62,7 +66,7 @@ const Home = () => {
             data={popularMoviesData.data}
             renderItem={({item, index, separators}) => (
               <ListCard
-                onPress={() => console.log('tesst')}
+                onPress={() => navigation.navigate('MovieDetail', {item: item})}
                 bannerImage={item.backdrop_path}
                 posterImage={item.poster_path}
                 movieTitle={item.title}

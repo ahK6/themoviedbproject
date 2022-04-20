@@ -4,6 +4,9 @@ import {
   GET_POPULAR_MOVIES_ATTEMPT,
   GET_POPULAR_MOVIES_SUCCESS,
   GET_POPULAR_MOVIES_FAILURE,
+  GET_RELATED_MOVIES_ATTEMPT,
+  GET_RELATED_MOVIES_SUCCESS,
+  GET_RELATED_MOVIES_FAILURE,
 } from '../Types/MoviesTypes';
 const initialState = {
   data: '',
@@ -34,6 +37,26 @@ const MoviesReducer = (
         errors: '',
       };
     case GET_POPULAR_MOVIES_FAILURE:
+      return {
+        ...state,
+        status: 'failed',
+        errors: action.payload,
+      };
+
+    case GET_RELATED_MOVIES_ATTEMPT:
+      return {
+        ...state,
+        status: action.payload,
+        errors: '',
+      };
+    case GET_RELATED_MOVIES_SUCCESS:
+      return {
+        ...state,
+        status: 'success',
+        movieData: action.payload.results,
+        errors: '',
+      };
+    case GET_RELATED_MOVIES_FAILURE:
       return {
         ...state,
         status: 'failed',

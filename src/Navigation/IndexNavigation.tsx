@@ -6,8 +6,10 @@ import {RootState} from '../store/store';
 import Login from '../Screens/OnBoard/LoginScreen';
 import Home from '../Screens/Main/Home';
 import {Alert, Text, TouchableOpacity, View} from 'react-native';
+import {RootStackParamList} from './NavigationsPropsParamsTypes';
+import MovieDetail from '../Screens/Main/MovieDetail';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigation = () => {
   const loginStatus = useSelector((store: RootState) => store?.Login);
@@ -25,13 +27,22 @@ const RootNavigation = () => {
             }}
           />
         ) : (
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{
-              headerTitleAlign: 'center',
-            }}
-          />
+          <>
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{
+                headerTitleAlign: 'center',
+              }}
+            />
+            <Stack.Screen
+              name="MovieDetail"
+              component={MovieDetail}
+              options={{
+                headerTitleAlign: 'center',
+              }}
+            />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>

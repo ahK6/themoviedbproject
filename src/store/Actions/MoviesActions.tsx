@@ -8,6 +8,9 @@ import {
   GET_POPULAR_MOVIES_ATTEMPT,
   GET_POPULAR_MOVIES_SUCCESS,
   GET_POPULAR_MOVIES_FAILURE,
+  GET_RELATED_MOVIES_ATTEMPT,
+  GET_RELATED_MOVIES_SUCCESS,
+  GET_RELATED_MOVIES_FAILURE,
 } from '../Types/MoviesTypes';
 
 const MoviesAction: ActionCreator<MoviesActionsTypes> = (type, payload) => {
@@ -31,6 +34,22 @@ export const GetPopularMovies = (page: number = 1) => {
       .catch(error => {
         console.log('errrorrr' + error);
         dispatch(MoviesAction(GET_POPULAR_MOVIES_FAILURE, error.response));
+      });
+  };
+};
+
+export const GetMovieDetail = (movieId: number = 0) => {
+  return (dispatch: Dispatch<any>) => {
+    dispatch(MoviesAction(GET_RELATED_MOVIES_ATTEMPT, 'updating'));
+
+    axiosMoviesInstance
+      .get(`/movie/${movieId}/similar`)
+      .then(response => {
+        dispatch(MoviesAction(GET_RELATED_MOVIES_SUCCESS, response.data));
+      })
+      .catch(error => {
+        console.log('errrorrr' + error);
+        dispatch(MoviesAction(GET_RELATED_MOVIES_FAILURE, error.response));
       });
   };
 };
