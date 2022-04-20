@@ -68,7 +68,14 @@ const Login: FC = () => {
           />
         </View>
       </View>
-      <TitleLabel text={'Iniciar Sesión'} textStyle={{marginVertical: hp(3)}} />
+      <TitleLabel
+        text={'Iniciar Sesión'}
+        textStyle={{
+          marginVertical: hp(3),
+          fontWeight: 'bold',
+          alignSelf: 'center',
+        }}
+      />
 
       <View
         style={{
@@ -81,7 +88,7 @@ const Login: FC = () => {
         {loginStatus.status == 'failed' && (
           <Label
             text={capitalizeFirstLetter(loginStatus.errors)}
-            textStyle={{color: 'red', marginBottom: 10}}
+            textStyle={{color: 'red', marginBottom: 10, alignSelf: 'center'}}
           />
         )}
         <Controller

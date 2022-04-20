@@ -7,16 +7,12 @@ import {
 const LabelsStyle = StyleSheet.create({
   titleLabel: {
     color: 'white',
-    alignSelf: 'center',
     fontSize: hp(3),
-    fontWeight: 'bold',
   },
 
   normalLabel: {
     color: 'white',
-    alignSelf: 'center',
     fontSize: hp(2),
-    fontWeight: 'bold',
   },
 });
 
