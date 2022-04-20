@@ -13,6 +13,7 @@ import {HomeScreenProp} from '../../Navigation/NavigationsPropsParamsTypes';
 import {GetMovieDetail} from '../../store/Actions/MoviesActions';
 import {RootState} from '../../store/store';
 import TitleLabel from '../../Components/Labels/TitleLabel';
+import LoadingOverlay from '../../Components/Modals/LoadingOverlay';
 
 const MovieDetail: FC = (props: any) => {
   const isVisible = useIsFocused();
@@ -22,7 +23,11 @@ const MovieDetail: FC = (props: any) => {
 
   const dispatch: Dispatch<any> = useDispatch();
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-  const MovieDetalData = useAppSelector(state => state.Movies.movieData);
+  const MovieDetalData = useAppSelector(state => state.RelatedMovies);
+
+  useEffect(() => {
+    console.log(MovieDetalData);
+  }, [MovieDetalData]);
 
   useEffect(() => {
     dispatch(GetMovieDetail(MovieData.id));
@@ -36,6 +41,14 @@ const MovieDetail: FC = (props: any) => {
         backgroundColor: '#35324f',
         paddingVertical: hp(3),
       }}>
+      <LoadingOverlay
+        showOverlay={
+          MovieDetalData.status === 'loading' ||
+          MovieDetalData.status === 'updating'
+            ? true
+            : false
+        }
+      />
       <ListCard
         onPress={() => navigation.navigate('Home')}
         bannerImage={MovieData.backdrop_path}
@@ -52,7 +65,7 @@ const MovieDetail: FC = (props: any) => {
 
       <FlatList
         horizontal
-        data={MovieDetalData}
+        data={MovieDetalData.relatedData}
         contentContainerStyle={{marginBottom: hp(8)}}
         renderItem={({item, index, separators}) => (
           <View>

@@ -20,7 +20,7 @@ const SearchResult = () => {
   const navigation = useNavigation<MovieDetailScreenProp>();
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-  const searchData = useAppSelector(state => state.Movies);
+  const searchData = useAppSelector(state => state.SearchMovies);
 
   return (
     <View style={{flex: 1, backgroundColor: '#35324f'}}>
@@ -34,7 +34,7 @@ const SearchResult = () => {
       {searchData.status === 'failed' ? (
         <>
           <TitleLabel
-            text={'Some thing went wrong, please try again later'}
+            text={searchData.errors}
             textStyle={{
               textAlign: 'center',
               marginVertical: hp(5),
@@ -45,12 +45,12 @@ const SearchResult = () => {
       ) : (
         <>
           <TitleLabel
-            text={searchData.dataSearch?.length + ' results'}
+            text={searchData.searchData?.length + ' results'}
             textStyle={{alignSelf: 'center', marginVertical: hp(2)}}
           />
           <FlatList
             style={{paddingHorizontal: wp(2)}}
-            data={searchData.dataSearch}
+            data={searchData.searchData}
             renderItem={({item, index, separators}) => (
               <ListCard
                 onPress={() => navigation.navigate('MovieDetail', {item: item})}

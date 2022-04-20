@@ -34,7 +34,6 @@ export const GetPopularMovies = (page: number = 1) => {
         dispatch(MoviesAction(GET_POPULAR_MOVIES_SUCCESS, response.data));
       })
       .catch(error => {
-        console.log(error.response.data);
         dispatch(
           MoviesAction(
             GET_POPULAR_MOVIES_FAILURE,

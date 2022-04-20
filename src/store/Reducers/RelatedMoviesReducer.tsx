@@ -1,51 +1,42 @@
 import {AnyAction} from 'redux';
-import {MovieInterface} from '../Interfaces/MovieActionsInterface';
+import {RelatedMoviesInterface} from '../Interfaces/MovieActionsInterface';
 import {
-  GET_POPULAR_MOVIES_ATTEMPT,
-  GET_POPULAR_MOVIES_SUCCESS,
-  GET_POPULAR_MOVIES_FAILURE,
   GET_RELATED_MOVIES_ATTEMPT,
   GET_RELATED_MOVIES_SUCCESS,
   GET_RELATED_MOVIES_FAILURE,
-  SEARCH_MOVIE_ATTEMPT,
-  SEARCH_MOVIE_SUCCESS,
-  SEARCH_MOVIE_FAILURE,
 } from '../Types/MoviesTypes';
 const initialState = {
-  data: [],
-  movieData: [],
-  dataSearch: [],
+  relatedData: [],
   page: 0,
   lastPage: 0,
   status: '',
   errors: '',
 };
 
-const MoviesReducer = (
-  state: MovieInterface = initialState,
+const RelatedMoviesReducer = (
+  state: RelatedMoviesInterface = initialState,
   action: AnyAction,
 ) => {
   switch (action.type) {
-    case GET_POPULAR_MOVIES_ATTEMPT:
+    case GET_RELATED_MOVIES_ATTEMPT:
       return {
         ...state,
         status: action.payload,
         errors: '',
       };
-    case GET_POPULAR_MOVIES_SUCCESS:
+    case GET_RELATED_MOVIES_SUCCESS:
       return {
         ...state,
         status: 'success',
-        data: [...state.data, ...action.payload.results],
-        page: action.payload.page,
-        lastPage: action.payload.total_pages,
+        relatedData: action.payload.results,
         errors: '',
       };
-    case GET_POPULAR_MOVIES_FAILURE:
+    case GET_RELATED_MOVIES_FAILURE:
       return {
         ...state,
         status: 'failed',
         errors: action.payload,
+        relatedData: [],
       };
 
     default:
@@ -53,4 +44,4 @@ const MoviesReducer = (
   }
 };
 
-export default MoviesReducer;
+export default RelatedMoviesReducer;
