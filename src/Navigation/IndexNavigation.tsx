@@ -12,8 +12,10 @@ import Input from '../Components/Inputs/Input';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
 import HomeHeader from '../Components/Headers/HomeHeader';
 import SearchResult from '../Screens/Main/SearchResults';
+import OnBoardNavigation from './NavigationStacks/OnBoardStack';
+import UserNavigation from './NavigationStacks/UserNavigation';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator();
 
 const RootNavigation = () => {
   const loginStatus = useSelector((store: RootState) => store?.Login);
@@ -23,38 +25,22 @@ const RootNavigation = () => {
       <Stack.Navigator>
         {loginStatus.token == '' || loginStatus.token == null ? (
           <Stack.Screen
-            name="Login"
-            component={Login}
+            name="OnBoardStack"
+            component={OnBoardNavigation}
             options={{
               headerTitleAlign: 'center',
               headerShown: false,
             }}
           />
         ) : (
-          <>
-            <Stack.Screen
-              name="Home"
-              component={Home}
-              options={{
-                headerTitleAlign: 'center',
-                header: () => <HomeHeader />,
-              }}
-            />
-            <Stack.Screen
-              name="MovieDetail"
-              component={MovieDetail}
-              options={{
-                headerTitleAlign: 'center',
-              }}
-            />
-            <Stack.Screen
-              name="SearchMovie"
-              component={SearchResult}
-              options={{
-                headerTitleAlign: 'center',
-              }}
-            />
-          </>
+          <Stack.Screen
+            name="UserNavigation"
+            component={UserNavigation}
+            options={{
+              headerTitleAlign: 'center',
+              headerShown: false,
+            }}
+          />
         )}
       </Stack.Navigator>
     </NavigationContainer>
