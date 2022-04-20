@@ -54,29 +54,45 @@ const MovieDetail: FC = (props: any) => {
         overview={MovieData.overview}
         voteAverage={MovieData?.vote_average}
       />
-      <TitleLabel
-        text="Related movies"
-        textStyle={{textAlign: 'center', marginVertical: hp(2)}}
-      />
 
-      <FlatList
-        horizontal
-        data={MovieDetalData.relatedData}
-        contentContainerStyle={{marginBottom: hp(8)}}
-        renderItem={({item, index, separators}) => (
-          <View>
-            <ListHorizontalCard
-              onPress={() => navigation.navigate('MovieDetail', {item: item})}
-              bannerImage={item.backdrop_path}
-              posterImage={item.poster_path}
-              movieTitle={item.title}
-              releaseDate={item.release_date}
-              overview={item.overview}
-              voteAverage={item.vote_average}
-            />
-          </View>
-        )}
-      />
+      {MovieDetalData.relatedData.length > 0 &&
+      MovieDetalData.status == 'success' ? (
+        <>
+          <TitleLabel
+            text="Related movies"
+            textStyle={{textAlign: 'center', marginVertical: hp(2)}}
+          />
+          <FlatList
+            horizontal
+            data={MovieDetalData.relatedData}
+            contentContainerStyle={{marginBottom: hp(8)}}
+            renderItem={({item, index, separators}) => (
+              <ListHorizontalCard
+                onPress={() => navigation.navigate('MovieDetail', {item: item})}
+                bannerImage={item.backdrop_path}
+                posterImage={item.poster_path}
+                movieTitle={item.title}
+                releaseDate={item.release_date}
+                overview={item.overview}
+                voteAverage={item.vote_average}
+              />
+            )}
+          />
+        </>
+      ) : MovieDetalData.relatedData.length <= 0 &&
+        MovieDetalData.status == 'success' ? (
+        <TitleLabel
+          text={'No related movies found'}
+          textStyle={{textAlign: 'center', marginVertical: hp(2)}}
+        />
+      ) : (
+        MovieDetalData.status == 'failed' && (
+          <TitleLabel
+            text={MovieDetalData.errors}
+            textStyle={{textAlign: 'center', marginVertical: hp(2)}}
+          />
+        )
+      )}
     </ScrollView>
   );
 };
