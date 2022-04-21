@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  Keyboard,
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -37,6 +38,22 @@ const Login: FC = () => {
 
   const [hidePassword, setHidePassword] = useState<boolean>(false);
 
+  const [isKeyboardShowing, setIsKeyboardShowing] = useState<boolean>(false);
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
+      setIsKeyboardShowing(true);
+    });
+    const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
+      setIsKeyboardShowing(false);
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
+
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -51,19 +68,23 @@ const Login: FC = () => {
   } = useForm<LoginScreenState>({resolver: yupResolver(schema)});
 
   const onSubmit = (data: LoginScreenState) => {
+    if (loginStatus.status === 'loading') return;
     dispatch(loginUser(data.email, data.password));
   };
 
   return (
     <ScrollView style={styles.root}>
-      <View style={styles.sectionImageContainer}>
-        <View style={styles.imageContainer}>
-          <Image
-            style={styles.image}
-            source={require('../../assets/images/logo.png')}
-          />
+      {!isKeyboardShowing && (
+        <View style={styles.sectionImageContainer}>
+          <View style={styles.imageContainer}>
+            <Image
+              style={styles.image}
+              source={require('../../assets/images/logo.png')}
+            />
+          </View>
         </View>
-      </View>
+      )}
+
       <TitleLabel
         text={'Iniciar Sesión'}
         textStyle={{
