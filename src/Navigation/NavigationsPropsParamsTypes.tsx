@@ -4,7 +4,7 @@ export type RootStackParamList = {
   Login: undefined;
   Home: undefined;
   MovieDetail: {};
-  SearchMovie: undefined;
+  SearchMovie: {query: String};
 };
 
 export type HomeScreenProp = NativeStackNavigationProp<

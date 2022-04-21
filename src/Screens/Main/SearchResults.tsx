@@ -16,11 +16,13 @@ import LoadingOverlay from '../../Components/Modals/LoadingOverlay';
 import {useNavigation} from '@react-navigation/native';
 import {MovieDetailScreenProp} from '../../Navigation/NavigationsPropsParamsTypes';
 
-const SearchResult = () => {
+const SearchResult = (props: any) => {
   const navigation = useNavigation<MovieDetailScreenProp>();
   const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
   const searchData = useAppSelector(state => state.SearchMovies);
+
+  const {query} = props.route.params;
 
   return (
     <View style={{flex: 1, backgroundColor: '#35324f'}}>
@@ -45,8 +47,11 @@ const SearchResult = () => {
       ) : (
         <>
           <TitleLabel
-            text={searchData.searchData?.length + ' results'}
-            textStyle={{alignSelf: 'center', marginVertical: hp(2)}}
+            text={searchData.searchData?.length + ' results for ' + query}
+            textStyle={{
+              alignSelf: 'center',
+              marginVertical: hp(2),
+            }}
           />
           <FlatList
             style={{paddingHorizontal: wp(2)}}

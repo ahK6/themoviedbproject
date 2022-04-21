@@ -17,7 +17,6 @@ const OnBoardNavigation = () => {
         name="Login"
         component={Login}
         options={{
-          headerTitleAlign: 'center',
           headerShown: false,
         }}
       />

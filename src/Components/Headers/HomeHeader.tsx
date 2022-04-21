@@ -30,7 +30,7 @@ const HomeHeader = () => {
       return Alert.alert('Please enter a text in search field');
     }
     dispatch(SearchMovie(searchText));
-    navigation.navigate('SearchMovie');
+    navigation.navigate('SearchMovie', {query: searchText});
   };
 
   return (

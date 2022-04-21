@@ -21,6 +21,7 @@ const UserNavigation = () => {
         component={Home}
         options={{
           headerTitleAlign: 'center',
+
           header: () => <HomeHeader />,
         }}
       />
@@ -29,6 +30,7 @@ const UserNavigation = () => {
         component={MovieDetail}
         options={{
           headerTitleAlign: 'center',
+          title: 'Movie Detail',
         }}
       />
       <Stack.Screen
@@ -36,6 +38,7 @@ const UserNavigation = () => {
         component={SearchResult}
         options={{
           headerTitleAlign: 'center',
+          title: 'Search results',
         }}
       />
     </Stack.Navigator>
