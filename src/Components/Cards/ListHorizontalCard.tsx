@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {Image, ScrollView, TouchableOpacity, View} from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -37,4 +37,4 @@ const ListHorizontalCard: FC<ListCardPropsParams> = ({
   );
 };
 
-export default ListHorizontalCard;
+export default memo(ListHorizontalCard);

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -45,4 +45,4 @@ const DarkButton: FC<ButtonTypes> = ({
   );
 };
 
-export default DarkButton;
+export default memo(DarkButton);

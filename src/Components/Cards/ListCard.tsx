@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -65,4 +65,4 @@ const ListCard: FC<ListCardPropsParams> = ({
   );
 };
 
-export default ListCard;
+export default memo(ListCard);

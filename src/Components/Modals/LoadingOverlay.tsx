@@ -1,5 +1,5 @@
 import AnimatedLottieView from 'lottie-react-native';
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {OverlayPropsParams} from './OverlayTypes';
 
@@ -29,4 +29,4 @@ const LoadingOverlay: FC<OverlayPropsParams> = ({showOverlay = false}) => {
   );
 };
 
-export default LoadingOverlay;
+export default memo(LoadingOverlay);

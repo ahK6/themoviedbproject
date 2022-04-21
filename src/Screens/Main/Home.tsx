@@ -86,7 +86,7 @@ const Home = () => {
 
               setCurrentPage(currentePage + 1);
             }}
-            onEndReachedThreshold={0.1}
+            onEndReachedThreshold={1}
             keyExtractor={item => item.id}
           />
         </>
@@ -96,23 +96,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: '#35324f',
-  },
-  sectionImageContainer: {
-    width: wp(100),
-    height: hp(27),
-    backgroundColor: '#ed7bc4',
-
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  imageContainer: {
-    width: 170,
-    height: 200,
-    aspectRatio: 1 * 1.4,
-  },
-});

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -24,4 +24,4 @@ const LightButton: FC<ButtonTypes> = ({
   );
 };
 
-export default LightButton;
+export default memo(LightButton);

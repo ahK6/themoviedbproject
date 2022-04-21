@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {memo, useState} from 'react';
 import {Alert, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
@@ -50,4 +50,4 @@ const HomeHeader = () => {
   );
 };
 
-export default HomeHeader;
+export default memo(HomeHeader);

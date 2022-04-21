@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {Text} from 'react-native';
 
 import {LabelPropsParams} from './LabelsTypes';
@@ -8,4 +8,4 @@ const Label: FC<LabelPropsParams> = ({text = '', textStyle}) => {
   return <Text style={[LabelsStyle.normalLabel, textStyle]}>{text}</Text>;
 };
 
-export default Label;
+export default memo(Label);
